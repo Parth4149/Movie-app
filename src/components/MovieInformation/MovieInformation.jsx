@@ -1,7 +1,9 @@
 const MovieInformation = () => {
   console.log('Movie Information');
   return (
-    <div>MovieInformation</div>
+    <div>
+      <h2>MovieInformation</h2>
+    </div>
   );
 };
 
