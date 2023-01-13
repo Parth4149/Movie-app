@@ -1,25 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import { CssBaseline } from '@mui/material';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Routes, Route } from 'react-router-dom';
+import Nav from './components/Nav';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => (
+  <div>
+    <CssBaseline />
+    <main>
+      <Nav />
+      <Routes>
+        <Route path="/" element={<h2>Home</h2>} />
+        <Route path="/movies" element={<h2>Movies</h2>} />
+        <Route path="/movies/:id" element={<h2>Movie Information</h2>} />
+        <Route path="/actors/:id" element={<h2>Actors</h2>} />
+        <Route path="/profile/:id" element={<h2>Profile</h2>} />
+      </Routes>
+    </main>
+  </div>
+);
 
 export default App;
