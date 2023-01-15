@@ -1,24 +1,26 @@
 import '../App.css';
-import { CssBaseline } from '@mui/material';
+import { CssBaseline, Button } from '@mui/material';
 import { Routes, Route } from 'react-router-dom';
 
-// import useStyles from './styles';
-import Button from '@mui/material/Button';
-// import { Button } from '@mui/material';
-
+// import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
+import styles from './styles';
 import { NavBar, Movies, Actors, Profile, MovieInformation } from './index';
+
+const theme = createTheme();
 
 const App = () => {
   // const classes = useStyles();
-  const classes = 0;
-
+  console.log('App');
+  // console.log(JSON.stringify(theme));
   return (
-    <div className={classes.root}>
+    <div className="root">
       <CssBaseline />
-      <NavBar />
-      <Button variant="contained">Hello World</Button>
-      <main className={classes.content}>
-        <div className={classes.toolbar}>
+      <NavBar theme={theme} />
+      <main style={styles.content}>
+        <Button variant="contained" sx={styles.hero}>Hello World</Button>
+        <div style={styles.toolbar}>
+          <h2 style={styles.parth}>This is Parth</h2>
           <Routes>
             <Route path="/" element={<h2>Home</h2>} />
             <Route path="/movies" element={<Movies />} />
