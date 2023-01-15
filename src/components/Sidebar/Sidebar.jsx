@@ -45,12 +45,26 @@ const Sidebar = () => {
       <Divider />
       <List>
         <ListSubheader>Categories</ListSubheader>
-        {demoCategories.map(({ label, value }) => (
-          <Link to="/" key={value} sx={styles.links}>
+        {categories.map(({ label, value }) => (
+          <Link to="/" key={value} style={styles.links}>
             <ListItem onClick={() => {}}>
-              <ListItemIcon>
+              {/* <ListItemIcon>
                 <img style={styles.genreImages} src={redLogo} height={30} />
-              </ListItemIcon>
+              </ListItemIcon> */}
+              <ListItemText primary={label} />
+            </ListItem>
+          </Link>
+        ))}
+      </List>
+      <Divider />
+      <List>
+        <ListSubheader>Genres</ListSubheader>
+        {demoCategories.map(({ label, value }) => (
+          <Link to="/" key={value} style={styles.links}>
+            <ListItem onClick={() => {}}>
+              {/* <ListItemIcon>
+                <img style={styles.genreImages} src={redLogo} height={30} />
+              </ListItemIcon> */}
               <ListItemText primary={label} />
             </ListItem>
           </Link>

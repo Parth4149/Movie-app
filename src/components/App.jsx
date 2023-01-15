@@ -17,6 +17,8 @@ const App = () => {
     <div className="root">
       <CssBaseline />
       <NavBar theme={theme} />
+
+      {/* <Movies /> */}
       <main style={styles.content}>
         <Button variant="contained" sx={styles.hero}>Hello World</Button>
         <div style={styles.toolbar}>

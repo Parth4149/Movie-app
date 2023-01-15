@@ -30,7 +30,11 @@ const NavBar = ({ theme }) => {
       <AppBar position="fixed">
         <Toolbar sx={styles.toolbar}>
           {isMobile && (
-            <IconButton color="inherit" edge="start">
+            <IconButton
+              onClick={() => setMobileOpen((prevMobileOpen) => !prevMobileOpen)}
+              color="inherit"
+              edge="start"
+            >
               <Menu />
             </IconButton>
           )}
@@ -74,6 +78,7 @@ const NavBar = ({ theme }) => {
               open={mobileOpen}
               sx={styles.drawerPaper}
               ModalProps={{ keepMounted: true }} // Better open performance on mobile.
+              onClose={() => setMobileOpen((prevMobileOpen) => !prevMobileOpen)}
             >
               <Sidebar setMobileOpen={setMobileOpen} />
             </Drawer>

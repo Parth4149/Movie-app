@@ -25,7 +25,7 @@ const styles = {
   parth: {
     color: 'deeppink',
     backgroundColor: 'lightblue',
-  }
+  },
 };
 
 export default styles;
