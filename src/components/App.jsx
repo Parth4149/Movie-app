@@ -1,5 +1,4 @@
-import '../App.css';
-import { CssBaseline, Button } from '@mui/material';
+import { CssBaseline } from '@mui/material';
 import { Routes, Route } from 'react-router-dom';
 
 // import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -14,14 +13,13 @@ const App = () => {
   console.log('App');
   // console.log(JSON.stringify(theme));
   return (
-    <div className="root">
+    <div style={styles.root}>
       <CssBaseline />
       <NavBar theme={theme} />
 
       <main style={styles.content}>
-        <Button variant="contained" sx={styles.hero}>Hello World</Button>
+        {/* <Button variant="contained" sx={styles.hero}>Hello World</Button> */}
         <div style={styles.toolbar}>
-          <h2 style={styles.parth}>This is Parth</h2>
           <Routes>
             <Route path="/" element={<h2>Home</h2>} />
             <Route path="/movies" element={<Movies />} />

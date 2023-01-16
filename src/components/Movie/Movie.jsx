@@ -4,9 +4,30 @@ import styles from './styles';
 
 const Movie = ({ movie, i }) => {
   console.log('Movie');
+  // 3 * 4 = 12  [xl={3} means 4 columns]
   return (
-    <Grid sx={styles.movie} item xs={12} sm={6} md={4} lg={3} xl={2}>
-      <Typography sx={styles.title} variant="h5">{movie.title}</Typography>
+    <Grid item sx={styles.movie} xs={12} sm={6} md={4} lg={3} xl={2}>
+      <Grow in key={i} timeout={(i + 1) * 200}>
+        <Link to={`/movie/${movie.id}`} className="links">
+          <img
+            className="poster__img"
+            src={
+              movie.poster_path
+                ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+                : 'https://www.fillmurray.com/200/300'
+            }
+            alt={movie.title}
+          />
+          <Typography sx={styles.title} variant="h6">
+            {movie.title}
+          </Typography>
+          <Tooltip disableTouchListener title={`${movie.vote_average} / 10`}>
+            <div>
+              <Rating readOnly value={movie.vote_average / 2} precision={0.1} />
+            </div>
+          </Tooltip>
+        </Link>
+      </Grow>
     </Grid>
   );
 };

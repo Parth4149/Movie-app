@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom';
 // import { useTheme } from '@mui/material/styles';
 import { createTheme } from '@mui/material/styles';
 import styles from './styles';
+import { useGetGenresQuery } from '../../services/TMDB';
 
 const categories = [
   { label: 'Popular', value: 'popular' },
@@ -32,7 +33,10 @@ const blueLogo = 'https://fontmeme.com/permalink/210930/6854ae5c7f76597cf8680e48
 
 const Sidebar = () => {
   const theme = createTheme();
-  console.log();
+
+  const { data, isFetching } = useGetGenresQuery();
+  console.log(data);
+
   return (
     <>
       <Link to="/" style={styles.imageLink}>
@@ -59,16 +63,19 @@ const Sidebar = () => {
       <Divider />
       <List>
         <ListSubheader>Genres</ListSubheader>
-        {demoCategories.map(({ label, value }) => (
-          <Link to="/" key={value} style={styles.links}>
-            <ListItem onClick={() => {}}>
-              {/* <ListItemIcon>
-                <img style={styles.genreImages} src={redLogo} height={30} />
-              </ListItemIcon> */}
-              <ListItemText primary={label} />
-            </ListItem>
-          </Link>
-        ))}
+        {isFetching
+          ? (
+            <Box display="flex" justifyContent="center">
+              <CircularProgress />
+            </Box>
+          )
+          : (data.genres.map(({ name, id }) => (
+            <Link to="/" key={id} style={styles.links}>
+              <ListItem onClick={() => {}}>
+                <ListItemText primary={name} />
+              </ListItem>
+            </Link>
+          )))}
       </List>
     </>
   );

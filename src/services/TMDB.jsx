@@ -10,6 +10,11 @@ export const tmdbApi = createApi({
   reducerPath: 'tmdbApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://api.themoviedb.org/3' }),
   endpoints: (builder) => ({
+    // Get Genres (https://api.themoviedb.org/3/genre/movie/list?api_key=${tmdbApiKey}&language=en-US)
+    getGenres: builder.query({
+      query: () => `/genre/movie/list?api_key=${tmdbApiKey}&language=en-US`,
+    }),
+
     // Get Movies by [Type]
     getMovies: builder.query({
       query: () => `/movie/popular?page=${page}&api_key=${tmdbApiKey}`,
@@ -17,5 +22,5 @@ export const tmdbApi = createApi({
   }),
 });
 
-export const { useGetMoviesQuery } = tmdbApi;
+export const { useGetGenresQuery, useGetMoviesQuery } = tmdbApi;
 // react toolkit query automatically creates a hook for us
