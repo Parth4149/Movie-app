@@ -6,7 +6,7 @@ const MovieList = ({ movies }) => {
   console.log('MovieList');
 
   return (
-    <Grid container sx={styles.moviesContainer} >
+    <Grid container sx={styles.moviesContainer}>
       {movies.map((movie, i) => (
         <Movie key={i} movie={movie} i={i} />
       ))}
