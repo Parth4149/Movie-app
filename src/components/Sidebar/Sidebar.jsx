@@ -35,8 +35,8 @@ const Sidebar = () => {
 
   const dispatch = useDispatch();
 
-  const { genreOrCategoryName } = useSelector((state) => state.currentGenreOrCategory);
-  // console.log(genreOrCategoryName);
+  const { genreIdOrCategoryName } = useSelector((state) => state.currentGenreOrCategory); // read data from the store
+  // console.log(genreIdOrCategoryName);
   return (
     <>
       <Link to="/" style={styles.imageLink}>

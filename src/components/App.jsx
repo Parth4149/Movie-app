@@ -20,9 +20,8 @@ const App = () => {
       <main style={styles.content}>
         {/* <Button variant="contained" sx={styles.hero}>Hello World</Button> */}
         <div style={styles.toolbar}>
-          <Movies />
           <Routes>
-            <Route path="/" element={<h2>Home</h2>} />
+            <Route path="/" element={<Movies />} />
             <Route path="/movies" element={<Movies />} />
             <Route path="/movies/:id" element={<MovieInformation />} />
             <Route path="/actors/:id" element={<Actors />} />

@@ -31,7 +31,7 @@ const styles = {
     width: drawerWidth,
   },
   linkButton: {
-    '&:hover': {
+    ':hover': {
       color: 'white !important',
       TextDecoder: 'none',
     },

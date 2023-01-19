@@ -1,29 +1,43 @@
-import {
-  AppBar,
-  IconButton,
-  Toolbar,
-  Drawer,
-  Button,
-  Avatar,
-  useMediaQuery,
-} from '@mui/material';
-import {
-  Menu,
-  AccountCircle,
-  Brightness4,
-  Brightness7,
-} from '@mui/icons-material';
-import { useState } from 'react';
+import { AppBar, IconButton, Toolbar, Drawer, Button, Avatar, useMediaQuery } from '@mui/material';
+import { Menu, AccountCircle, Brightness4, Brightness7 } from '@mui/icons-material';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
 import styles from './styles';
-import Sidebar from '../Sidebar/Sidebar';
+
+import { Sidebar, Search } from '../index';
+import { fetchToken, createSessionId, moviesApi } from '../../utils';
+import { setUser, userSelector } from '../../features/auth';
 
 const NavBar = ({ theme }) => {
-  console.log('NavBar');
   const isMobile = useMediaQuery('(max-width:600px)');
-  const isAuthenticated = true;
-
   const [mobileOpen, setMobileOpen] = useState(false);
+  const token = localStorage.getItem('request_token');
+  const sessionIdFromLocalStorage = localStorage.getItem('session_id');
+
+  const dispatch = useDispatch();
+  const { isAuthenticated, user } = useSelector(userSelector);
+  // console.log('Navbar', user);
+
+  useEffect(() => {
+    const logInUser = async () => {
+      if (token) {
+        if (sessionIdFromLocalStorage) {
+          // console.log(1);
+          const { data: userData } = await moviesApi.get(`/account?session_id=${sessionIdFromLocalStorage}`);
+          dispatch(setUser(userData));
+        } else {
+          // console.log(2);
+          const sessionId = await createSessionId();
+          const { data: userData } = await moviesApi.get(`/account?session_id=${sessionId}`);
+          dispatch(setUser(userData));
+        }
+      }
+    };
+
+    logInUser();
+  }, [token]);
 
   return (
     <div>
@@ -42,30 +56,30 @@ const NavBar = ({ theme }) => {
             {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
           </IconButton>
 
-          {!isMobile && 'search..'}
+          {!isMobile && <Search />}
 
           <div>
             {!isAuthenticated ? (
-              <Button color="inherit" onClick={() => {}}>
+              <Button color="inherit" onClick={fetchToken}>
                 Login &nbsp; <AccountCircle />
               </Button>
             ) : (
-              <Link to="/profile/:id">
-                <Button
-                  sx={styles.linkButton}
-                  color="inherit"
-                  onClick={() => {}}
-                >
-                  {!isMobile && <>My Movies &nbsp;</>}
-                  <Avatar
-                    style={{ width: 30, height: 30 }}
-                    alt="Profile"
-                    src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"
-                  />
-                </Button>
-              </Link>
+              <Button
+                sx={styles.linkButton}
+                color="inherit"
+                component={Link}
+                to={`/profile/${user.id}`}
+              >
+                {!isMobile && <>My Movies &nbsp;</>}
+                <Avatar
+                  style={{ width: 30, height: 30 }}
+                  alt="Profile"
+                  src="https://picsum.photos/id/237/536/354"
+                />
+              </Button>
             )}
           </div>
+          {isMobile && <Search />}
         </Toolbar>
       </AppBar>
       <div>

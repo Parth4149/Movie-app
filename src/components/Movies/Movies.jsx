@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
 import { Box, CircularProgress, useMediaQuery, Typography, LinearProgress, Stack } from '@mui/material';
 import { useSelector } from 'react-redux';
-
 import { useGetMoviesQuery } from '../../services/TMDB';
+
 import { MovieList } from '../index';
 
 const Movies = () => {
-  const { data, error, isFetching, isLoading } = useGetMoviesQuery();
+  const [page, setPage] = useState(1);
+  const { genreIdOrCategoryName, searchQuery } = useSelector((state) => state.currentGenreOrCategory); // read data from the store
+  const { data, error, isFetching } = useGetMoviesQuery({ genreIdOrCategoryName, page, searchQuery });
+
   // console.log(data);
   if (isFetching) { // for loading
     return (
@@ -27,14 +30,7 @@ const Movies = () => {
     );
   }
   if (error) return 'An error has occurred.';
-  // if (isLoading) {
-  //   return (
-  //     <Stack sx={{ width: '100%', color: 'grey.500' }} spacing={2}>
-  //       <LinearProgress color="secondary" />
-  //       <LinearProgress color="success" />
-  //     </Stack>
-  //   );
-  // }
+
   return (
     <div>
       {(data) && <MovieList movies={data.results} />}
