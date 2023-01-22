@@ -1,6 +1,7 @@
 import { Typography, Grid, Grow, Tooltip, Rating } from '@mui/material';
 import { Link } from 'react-router-dom';
 import styles from './styles';
+import './style.css';
 
 const Movie = ({ movie, i }) => {
   console.log('Movie');

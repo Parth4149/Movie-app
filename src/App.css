@@ -5,49 +5,4 @@
   padding: 0;
   box-sizing: border-box;
 }
-/*
- Movie Component 
-*/
-.poster__img {
-  /* flex: 1; */
-  border-radius: 20px;
-  height: 300px;
-  margin-bottom: 10px;
-  transition: 0.2s ease;
-  overflow: hidden; 
-  /* object-fit: cover; */
-  /* object-position: center; */
-}
-.poster__img:hover {
-  transform: scale(1.03);
-}
 
-.links {
-  text-align: center;
-  font-weight: bolder;
-  text-decoration: none;
-}
-.links:hover {
-  cursor: pointer;
-}
-@media screen and (min-width: 300px) {
-  .links {
-    display: flex;
-    flex-direction: column;
-  }
-}
-
-/* 
-  Search
-*/
-.searchContainer {
-
-}
-
-@media screen and (max-width: 600px) {
-  .searchContainer {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-}
