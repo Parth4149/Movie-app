@@ -24,10 +24,15 @@
   align-items: center;
   text-decoration: none;
 }
-.buttonsContainer {
+
+.buttonsContainer, .mainContainer {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  width: 100%;
+}
+.video {
+   width: 50%;
+   height: 50%;
 }
 
 @media screen and (max-width: 600px) {
@@ -37,4 +42,9 @@
   .buttonsContainer {
     flex-direction: column;
   }
+  .video {
+    width: 90%;
+    height: 40%;
+  }
 }
+                                

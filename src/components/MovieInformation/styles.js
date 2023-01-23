@@ -22,6 +22,11 @@ const styles = {
     filter: theme.palette.mode === 'dark' && 'invert(1)',
     marginRight: '10px',
   },
+  modal: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 };
 
 export default styles;

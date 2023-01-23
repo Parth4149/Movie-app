@@ -3,7 +3,7 @@ import { Box, CircularProgress, useMediaQuery, Typography, LinearProgress, Stack
 import { useSelector } from 'react-redux';
 import { useGetMoviesQuery } from '../../services/TMDB';
 
-import { MovieList } from '../index';
+import { MovieList, Pagination } from '../index';
 
 const Movies = () => {
   const [page, setPage] = useState(1);
@@ -35,7 +35,8 @@ const Movies = () => {
 
   return (
     <div>
-      {(data) && <MovieList movies={data.results} />}
+      {(data) && <MovieList movies={data} />}
+      <Pagination />
     </div>
   );
 };

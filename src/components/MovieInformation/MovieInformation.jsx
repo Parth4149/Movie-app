@@ -1,21 +1,26 @@
+import { useState } from 'react';
 import { Modal, Typography, Button, ButtonGroup, Grid, Box, CircularProgress, useMediaQuery, Rating } from '@mui/material';
 import { Movie as MovieIcon, Theaters, Language, PlusOne, Favorite, FavoriteBorderOutlinedIcon, Remove, ArrowBack, FavoriteBorderOutlined } from '@mui/icons-material';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 
-import { useGetMovieQuery } from '../../services/TMDB';
+import { useGetMovieQuery, useGetRecommendationsQuery } from '../../services/TMDB';
 import genreIcons from '../../assets/genres';
 import { selectGenreOrCategory } from '../../features/currentGenreOrCategory'; // action creators
 
 import styles from './styles';
 import './style.css';
+import { MovieList } from '../index';
 
 const MovieInformation = () => {
   const { id } = useParams();
   const { data, isFetching, error } = useGetMovieQuery(id);
+  // rename
+  const { data: recommendations, isFetching: isRecommendationsFetching } = useGetRecommendationsQuery({ movie_id: id, list: '/recommendations' });
 
   const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
 
   const isMovieFavorited = true;
   const isMovieWatchlisted = true;
@@ -27,6 +32,7 @@ const MovieInformation = () => {
 
   };
 
+  console.log(data);
   if (isFetching) {
     return (
       <Box display="flex" justifyContent="center">
@@ -41,7 +47,6 @@ const MovieInformation = () => {
       </Box>
     );
   }
-  // console.log(data);
   return (
     <Grid container sx={styles.containerSpaceAround}>
       <Grid item sm={12} lg={4}>
@@ -69,6 +74,7 @@ const MovieInformation = () => {
           </Typography>
         </Grid>
 
+        {/* Genre Icons */}
         <Grid item sx={styles.genresContainer}>
           {data?.genres.map((genre) => (
             <Link key={genre.id} to="/" className="links" onClick={() => dispatch(selectGenreOrCategory(genre.id))}>
@@ -83,10 +89,10 @@ const MovieInformation = () => {
         <Typography sx={{ mb: '2rem' }}>
           {data?.overview}
         </Typography>
+
         <Typography variant="h5" gutterBottom>
           Top Cast
         </Typography>
-
         <Grid item container spacing={2}>
           {data && data.credits?.cast?.map((character, i) => (
             character.profile_path && (
@@ -102,12 +108,18 @@ const MovieInformation = () => {
         </Grid>
 
         <Grid item container sx={{ mt: '2rem' }}>
-          <div className="buttonsContainer1">
-            <Grid item xs={12} sm={6} className="buttonsContainer" sx={styles.buttonsContainer}>
+          <div className="mainContainer">
+            <Grid item xs={12} sm={6} className="buttonsContainer">
               <ButtonGroup size="medium" variant="outlined">
-                <Button target="_blank" rel="noopener noreferrer" href={data?.homepage} endIcon={<Language />}>Website</Button>
-                <Button target="_blank" rel="noopener noreferrer" href={`https://www.imdb.com/title/${data?.imdb_id}`} endIcon={<MovieIcon />}>IMDB</Button>
-                <Button onClick={() => {}} href="#" endIcon={<Theaters />}>Trailer</Button>
+                <Button target="_blank" rel="noopener noreferrer" href={data?.homepage} endIcon={<Language />}>
+                  Website
+                </Button>
+                <Button target="_blank" rel="noopener noreferrer" href={`https://www.imdb.com/title/${data?.imdb_id}`} endIcon={<MovieIcon />}>
+                  IMDB
+                </Button>
+                <Button onClick={() => setOpen(true)} href="#" endIcon={<Theaters />}>
+                  Trailer
+                </Button>
               </ButtonGroup>
             </Grid>
             <Grid item xs={12} sm={6} className="buttonsContainer">
@@ -127,8 +139,35 @@ const MovieInformation = () => {
             </Grid>
           </div>
         </Grid>
+
       </Grid>
 
+      <Box sx={{ mt: '5rem', width: '100%' }}>
+        <Typography variant="h3" gutterBottom align="center">
+          You might also like
+        </Typography>
+        {recommendations
+          ? <MovieList movies={recommendations} numberOfMovies={12} />
+          : <Box>Sorry, nothing was found.</Box>}
+      </Box>
+      {/* {console.log('Here', data?.videos?.results)} */}
+      <Modal
+        closeAfterTransition
+        sx={styles.modal}
+        open={open}
+        onClose={() => setOpen(false)}
+      >
+        {data?.videos?.results?.length > 0 && (
+          <iframe
+            autoPlay
+            className="video"
+            // frameBorder="0"
+            title="Trailer"
+            src={`https://www.youtube.com/embed/${data.videos.results[0].key}`}
+            allow="autoplay"
+          />
+        )}
+      </Modal>
     </Grid>
   );
 };
