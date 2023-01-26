@@ -27,6 +27,14 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
   },
+  buttonContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: '100%',
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column',
+    },
+  },
 };
 
 export default styles;

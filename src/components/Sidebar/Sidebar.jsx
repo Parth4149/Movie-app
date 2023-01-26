@@ -41,7 +41,7 @@ const Sidebar = () => {
       <List>
         <ListSubheader>Categories</ListSubheader>
         {categories.map(({ label, value }) => (
-          <Link to="/" key={value} style={styles.links}>
+          <Link to="/" key={value} style={styles.sidebar__links}>
             <ListItem onClick={() => dispatch(selectGenreOrCategory(value))}>
               <ListItemIcon>
                 <img
@@ -64,7 +64,7 @@ const Sidebar = () => {
           </Box>
         ) : (
           data.genres.map(({ name, id }) => (
-            <Link to="/" key={id} style={styles.links}>
+            <Link to="/" key={id} style={styles.sidebar__links}>
               <ListItem onClick={() => dispatch(selectGenreOrCategory(id))}>
                 <ListItemIcon>
                   <img

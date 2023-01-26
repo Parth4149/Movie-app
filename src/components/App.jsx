@@ -21,11 +21,12 @@ const App = () => {
         {/* <Button variant="contained" sx={styles.hero}>Hello World</Button> */}
         <div style={styles.toolbar}>
           <Routes>
-            <Route path="/" element={<Movies />} />
-            <Route path="/movies" element={<Movies />} />
+            <Route path="/" element={<Movies theme={theme} />} />
+            <Route path="/approved" element={<Movies theme={theme} />} />
             <Route path="/movie/:id" element={<MovieInformation />} />
             <Route path="/actors/:id" element={<Actors />} />
             <Route path="/profile/:id" element={<Profile />} />
+            {/* <Route path="*" element={<NoMatch />} /> */}
           </Routes>
         </div>
       </main>

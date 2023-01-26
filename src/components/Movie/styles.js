@@ -7,9 +7,9 @@ const styles = {
     padding: '10px',
   },
   title: {
-    color: theme.palette.text.primary ,
+    color: theme.palette.text.primary,
     textOverflow: 'ellipsis',
-    width: '200px',
+    width: '100%',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     marginTop: '10px',

@@ -7,11 +7,13 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     padding: '10% 0',
+    width: '100%',
   },
   image: {
+    maxWidth: '240px',
     width: '70%',
   },
-  links: {
+  sidebar__links: {
     color: theme.palette.text.primary,
     textDecoration: 'none',
   },

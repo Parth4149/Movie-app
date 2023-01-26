@@ -32,7 +32,7 @@ const MovieInformation = () => {
 
   };
 
-  console.log(data);
+  // console.log('Movie Information', data);
   if (isFetching) {
     return (
       <Box display="flex" justifyContent="center">
@@ -49,7 +49,7 @@ const MovieInformation = () => {
   }
   return (
     <Grid container sx={styles.containerSpaceAround}>
-      <Grid item sm={12} lg={4}>
+      <Grid item sx={{ mb: '2rem' }} sm={12} lg={4}>
         <img
           className="poster"
           src={`https://image.tmdb.org/t/p/w500/${data?.poster_path}`}
@@ -65,12 +65,12 @@ const MovieInformation = () => {
           {data?.tagline} 1
         </Typography>
         <Grid item sx={styles.containerSpaceAround}>
-          <Box display="flex" align="center">
+          <Box display="flex" justifyContent="center">
             <Rating readOnly value={data.vote_average / 2} />
             <Typography sx={{ ml: '10px' }} variant="subtitle1" gutterBottom>{data.vote_average.toFixed(1)} / 10</Typography>
           </Box>
           <Typography variant="h6" align="center" gutterBottom>
-            {data?.runtime}min {data?.spoken_languages.length > 0 ? `/ ${data?.spoken_languages[0].name}` : '' }
+            {data?.runtime}min | Language : {data?.spoken_languages[0].name}
           </Typography>
         </Grid>
 
@@ -108,9 +108,9 @@ const MovieInformation = () => {
         </Grid>
 
         <Grid item container sx={{ mt: '2rem' }}>
-          <div className="mainContainer">
+          <div className="buttonsContainer">
             <Grid item xs={12} sm={6} className="buttonsContainer">
-              <ButtonGroup size="medium" variant="outlined">
+              <ButtonGroup size="small" variant="outlined">
                 <Button target="_blank" rel="noopener noreferrer" href={data?.homepage} endIcon={<Language />}>
                   Website
                 </Button>
@@ -123,7 +123,7 @@ const MovieInformation = () => {
               </ButtonGroup>
             </Grid>
             <Grid item xs={12} sm={6} className="buttonsContainer">
-              <ButtonGroup size="medium" variant="outlined">
+              <ButtonGroup size="small" variant="outlined">
                 <Button onClick={addToFavorites} endIcon={isMovieFavorited ? <FavoriteBorderOutlined /> : <Favorite />}>
                   {isMovieFavorited ? 'Unfavorite' : 'Favorite'}
                 </Button>

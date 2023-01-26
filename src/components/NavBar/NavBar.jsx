@@ -40,7 +40,7 @@ const NavBar = ({ theme }) => {
   }, [token]);
 
   return (
-    <div>
+    <section>
       <AppBar position="fixed">
         <Toolbar sx={styles.toolbar}>
           {isMobile && (
@@ -71,11 +71,7 @@ const NavBar = ({ theme }) => {
                 to={`/profile/${user.id}`}
               >
                 {!isMobile && <>My Movies &nbsp;</>}
-                <Avatar
-                  style={{ width: 30, height: 30 }}
-                  alt="Profile"
-                  src="https://picsum.photos/id/237/536/354"
-                />
+                <Avatar style={{ width: 30, height: 30 }} src="https://picsum.photos/id/237/536/354" alt="Profile" />
               </Button>
             )}
           </div>
@@ -103,7 +99,7 @@ const NavBar = ({ theme }) => {
           )}
         </nav>
       </div>
-    </div>
+    </section>
   );
 };
 

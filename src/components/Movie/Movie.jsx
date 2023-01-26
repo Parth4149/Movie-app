@@ -1,4 +1,5 @@
 import { Typography, Grid, Grow, Tooltip, Rating } from '@mui/material';
+import MovieIcon from '@mui/icons-material/Movie';
 import { Link } from 'react-router-dom';
 import styles from './styles';
 import './style.css';
@@ -9,13 +10,11 @@ const Movie = ({ movie, i }) => {
   return (
     <Grid item sx={styles.movie} xs={12} sm={6} md={4} lg={3} xl={2}>
       <Grow in key={i} timeout={(i + 1) * 200}>
-        <Link to={`/movie/${movie.id}`} className="links">
+        <Link to={`/movie/${movie.id}`} className="movie__links">
           <img
             className="poster__img"
             src={
-              movie.poster_path
-                ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
-                : 'https://www.fillmurray.com/200/300'
+              movie?.poster_path && `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
             }
             alt={movie.title}
           />

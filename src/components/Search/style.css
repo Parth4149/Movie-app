@@ -11,8 +11,8 @@
 
 .castImage {
   width: 100%;
-  max-width: 7rem;
-  height: 8rem;
+  max-width: 7em;
+  height: 8em;
   object-fit: cover;
   border-radius: 10px;
 }

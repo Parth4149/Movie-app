@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-// https://redux-toolkit.js.org/tutorials/quick-start#full-counter-app-example , https://redux-toolkit.js.org/usage/usage-with-typescript#createslice
+// https://redux-toolkit.js.org/tutorials/quick-start#full-counter-app-example
 
 export const genreOrCategory = createSlice({
   name: 'genreOrCategory',

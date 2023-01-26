@@ -1,5 +1,5 @@
 import { createTheme } from '@mui/material/styles';
-// import { theme } from '../index';
+
 const theme = createTheme();
 // console.log(theme.palette.mode);
 const drawerWidth = 240;

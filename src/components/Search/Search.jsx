@@ -12,12 +12,15 @@ const Search = () => {
   const [query, setQuery] = useState('');
   const dispatch = useDispatch();
 
+  const location = useLocation();
+
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       console.log('HERE', query);
       dispatch(searchMovie(query));
     }
   };
+  if (location.pathname !== '/') return null;
 
   return (
     <div className="searchContainer">
