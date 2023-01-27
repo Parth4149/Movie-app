@@ -1,18 +1,19 @@
 .poster__img {
-  border-radius: 20px;
-  height: 300px;
-  max-width: 240px;
+  /* border-radius: 20px; */
+  max-height: 300px;
+  /* max-width: 240px; */
   width: 100%;
   margin-bottom: 10px;
   transition: 0.2s ease;
-  /* object-fit: cover; */
+  object-fit: contain;
   overflow: hidden;
 }
 .poster__img:hover {
-  transform: scale(1.03);
+  /* transform: scale(1.03); */
 }
 
 .movie__links {
+  margin: auto;
   max-width: 240px;
   text-align: center;
   font-weight: bolder;
@@ -20,11 +21,17 @@
 }
 .movie__links:hover {
   cursor: pointer;
-  /* box-shadow: -5px -5px 10px hsl(0, 0%, 100%), 5px 5px 10px hsl(240, 3%, 71%); */
+  box-shadow: -5px 0px 5px hsl(240, 3%, 91%), 5px 5px 5px hsl(240, 3%, 91%);
 }
 @media screen and (min-width: 300px) {
   .movie__links {
     display: flex;
     flex-direction: column;
+    max-width: 200px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .poster__img {
+    max-height: 260px;
   }
 }

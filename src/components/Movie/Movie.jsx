@@ -5,7 +5,7 @@ import styles from './styles';
 import './style.css';
 
 const Movie = ({ movie, i }) => {
-  console.log('Movie');
+  console.log('');
   // 3 * 4 = 12  [xl={3} means 4 columns]
   return (
     <Grid item sx={styles.movie} xs={12} sm={6} md={4} lg={3} xl={2}>

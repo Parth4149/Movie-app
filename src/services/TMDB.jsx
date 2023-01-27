@@ -40,6 +40,12 @@ export const tmdbApi = createApi({
     }),
 
     // Get user specific list
+    // https://api.themoviedb.org/3/account/%7Baccount_id%7D/favorite/movies?api_key=452c75a83b35c60555caa1acf0c698ce
+    // &session_id=1f0c729db5cd8e67622a241da4076b7148f10542&language=en-US&sort_by=created_at.asc&page=1
+    getList: builder.query({
+      query: ({ listName, accountId, sessionId, page }) => `/account/${accountId}/${listName}?api_key=${tmdbApiKey}&session_id=${sessionId}&page=${page}`,
+    }),
+
     getRecommendations: builder.query({
       query: ({ movie_id, list }) => `/movie/${movie_id}/${list}?api_key=${tmdbApiKey}`,
     }),
@@ -61,5 +67,6 @@ export const {
   useGetRecommendationsQuery,
   useGetActorsDetailsQuery,
   useGetMoviesByActorIdQuery,
+  useGetListQuery,
 } = tmdbApi;
 // react toolkit query automatically creates a hook for us

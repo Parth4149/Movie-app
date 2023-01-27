@@ -15,6 +15,7 @@ const styles = {
     marginTop: '10px',
     marginBottom: 0,
     textAlign: 'center',
+    padding: '0 5px',
   },
   // links: {
   //   textAlign: 'center',
