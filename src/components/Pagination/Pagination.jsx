@@ -1,9 +1,12 @@
 import { Typography, Button } from '@mui/material';
-import styles from './styles';
+import './style.css';
+// import { useTheme } from '@emotion/react';
+import { useTheme } from '@mui/material/styles';
 
 const Pagination = ({ currentPage, setPage, totalPages }) => {
   // const currentPage = 1;
   console.log('Pagination');
+  const theme = useTheme();
 
   const handlePrev = () => {
     if (currentPage === 1) return;
@@ -17,10 +20,16 @@ const Pagination = ({ currentPage, setPage, totalPages }) => {
   if (totalPages === 0) return null; // we don't need to show this component
 
   return (
-    <div style={styles.container}>
-      <Button onClick={handlePrev} sx={styles.button} variant="contained" color="primary" type="button">Prev</Button>
-      <Typography variant="h4" sx={styles.pageNumber}>{currentPage}</Typography>
-      <Button onClick={handleNext} sx={styles.button} variant="contained" color="primary" type="button">Next</Button>
+    <div className="container">
+      <Button onClick={handlePrev} className="button" variant="contained" color="primary" type="button">
+        Prev
+      </Button>
+      <Typography variant="h4" className="page__number" style={{ color: theme.palette.text.primary }}>
+        {currentPage}
+      </Typography>
+      <Button onClick={handleNext} className="button" variant="contained" color="primary" type="button">
+        Next
+      </Button>
     </div>
   );
 };

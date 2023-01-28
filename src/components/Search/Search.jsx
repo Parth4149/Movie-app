@@ -4,7 +4,7 @@ import { Search as SearchIcon } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
-import styles from './styles';
+// import styles from './styles';
 import './style.css';
 import { searchMovie } from '../../features/currentGenreOrCategory';
 
@@ -37,7 +37,7 @@ const Search = () => {
             </InputAdornment>
           ),
         }}
-        sx={styles.input}
+        // sx={styles.input}
       />
     </div>
   );

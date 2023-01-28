@@ -1,3 +1,17 @@
+.movie {
+  padding: 10px;
+}
+.title {
+  text-overflow: ellipsis;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-top: 10px;
+  margin-bottom: 0;
+  text-align: center;
+  padding: 0 5px;
+}
+
 .poster__img {
   /* border-radius: 20px; */
   max-height: 300px;
@@ -7,9 +21,6 @@
   transition: 0.2s ease;
   object-fit: contain;
   overflow: hidden;
-}
-.poster__img:hover {
-  /* transform: scale(1.03); */
 }
 
 .movie__links {
@@ -21,7 +32,7 @@
 }
 .movie__links:hover {
   cursor: pointer;
-  box-shadow: -5px 0px 5px hsl(240, 3%, 91%), 5px 5px 5px hsl(240, 3%, 91%);
+  box-shadow: -5px 5px 5px hsl(240, 3%, 91%), 5px 5px 5px hsl(240, 3%, 91%);
 }
 @media screen and (min-width: 300px) {
   .movie__links {
@@ -30,6 +41,7 @@
     max-width: 200px;
   }
 }
+/* for mobile */
 @media screen and (max-width: 600px) {
   .poster__img {
     max-height: 260px;
