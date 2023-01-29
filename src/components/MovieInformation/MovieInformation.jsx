@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTheme } from '@mui/material/styles';
 import { Modal, Typography, Button, ButtonGroup, Grid, Box, CircularProgress, useMediaQuery, Rating } from '@mui/material';
 import { Movie as MovieIcon, Theaters, Language, PlusOne, Favorite, FavoriteBorderOutlinedIcon, Remove, ArrowBack, FavoriteBorderOutlined } from '@mui/icons-material';
 import { Link, useParams } from 'react-router-dom';
@@ -9,12 +10,11 @@ import { useGetMovieQuery, useGetRecommendationsQuery, useGetListQuery } from '.
 import genreIcons from '../../assets/genres';
 import { selectGenreOrCategory } from '../../features/currentGenreOrCategory'; // action creators
 
-import styles from './styles';
 import './style.css';
 import { MovieList } from '../index';
-import { userSelector } from '../../features/auth';
 
 const MovieInformation = () => {
+  const theme = useTheme();
   const { id } = useParams();
   const { user } = useSelector((state) => state.user);
   // rename (2)
@@ -68,7 +68,12 @@ const MovieInformation = () => {
     setIsMovieWatchlisted((prev) => !prev);
   };
 
-  if (user?.id) { console.log('Movie Information', user); }
+  // if (user?.id) { console.log('Movie Information', user); }
+  //* styles
+  const genre__images = {
+    filter: theme.palette.mode === 'dark' && 'invert(1)',
+    marginRight: '10px',
+  };
 
   if (isFetching) {
     return (
@@ -85,7 +90,7 @@ const MovieInformation = () => {
     );
   }
   return (
-    <Grid container sx={styles.containerSpaceAround}>
+    <Grid container className="container__space__around">
       <Grid item sx={{ mb: '2rem' }} sm={12} lg={4}>
         <img
           className="poster"
@@ -101,7 +106,7 @@ const MovieInformation = () => {
         <Typography variant="h5" align="center" gutterBottom>
           {data?.tagline} 1
         </Typography>
-        <Grid item sx={styles.containerSpaceAround}>
+        <Grid item className="container__space__around">
           <Box display="flex" justifyContent="center">
             <Rating readOnly value={data.vote_average / 2} />
             <Typography sx={{ ml: '10px' }} variant="subtitle1" gutterBottom>{data.vote_average.toFixed(1)} / 10</Typography>
@@ -112,10 +117,10 @@ const MovieInformation = () => {
         </Grid>
 
         {/* Genre Icons */}
-        <Grid item sx={styles.genresContainer}>
+        <Grid item className="genres__container">
           {data?.genres.map((genre) => (
-            <Link key={genre.id} to="/" className="links" onClick={() => dispatch(selectGenreOrCategory(genre.id))}>
-              <img style={styles.genreImages} src={genreIcons[genre.name.toLowerCase()]} height={30} />
+            <Link key={genre.id} to="/" className="genre__icons" onClick={() => dispatch(selectGenreOrCategory(genre.id))}>
+              <img style={genre__images} src={genreIcons[genre.name.toLowerCase()]} height={30} />
               <Typography color="textPrimary" variant="subtitle1">{genre.name}</Typography>
             </Link>
           ))}
@@ -145,8 +150,8 @@ const MovieInformation = () => {
         </Grid>
 
         <Grid item container sx={{ mt: '2rem' }}>
-          <div className="buttonsContainer">
-            <Grid item xs={12} sm={6} className="buttonsContainer">
+          <div className="buttons__container">
+            <Grid item xs={12} sm={6} className="buttons__container">
               <ButtonGroup size="small" variant="outlined">
                 <Button target="_blank" rel="noopener noreferrer" href={data?.homepage} endIcon={<Language />}>
                   Website
@@ -159,7 +164,7 @@ const MovieInformation = () => {
                 </Button>
               </ButtonGroup>
             </Grid>
-            <Grid item xs={12} sm={6} className="buttonsContainer">
+            <Grid item xs={12} sm={6} className="buttons__container">
               <ButtonGroup size="small" variant="outlined">
                 <Button onClick={addToFavorites} endIcon={isMovieFavorite ? <FavoriteBorderOutlined /> : <Favorite />}>
                   {isMovieFavorite ? 'Unfavorite' : 'Favorite'}
@@ -190,7 +195,7 @@ const MovieInformation = () => {
       {/* {console.log('Here', data?.videos?.results)} */}
       <Modal
         closeAfterTransition
-        sx={styles.modal}
+        className="modal"
         open={open}
         onClose={() => setOpen(false)}
       >

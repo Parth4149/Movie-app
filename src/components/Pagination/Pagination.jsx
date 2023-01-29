@@ -4,8 +4,7 @@ import './style.css';
 import { useTheme } from '@mui/material/styles';
 
 const Pagination = ({ currentPage, setPage, totalPages }) => {
-  // const currentPage = 1;
-  console.log('Pagination');
+  // console.log('Pagination');
   const theme = useTheme();
 
   const handlePrev = () => {

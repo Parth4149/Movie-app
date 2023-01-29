@@ -1,14 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { useTheme } from '@mui/material/styles';
 import { TextField, InputAdornment } from '@mui/material';
 import { Search as SearchIcon } from '@mui/icons-material';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
-// import styles from './styles';
 import './style.css';
 import { searchMovie } from '../../features/currentGenreOrCategory';
 
 const Search = () => {
+  const theme = useTheme();
   const [query, setQuery] = useState('');
   const dispatch = useDispatch();
 
@@ -21,6 +22,16 @@ const Search = () => {
     }
   };
   if (location.pathname !== '/') return null;
+
+  // styles
+  const input = {
+    color: theme.palette.mode === 'light' && 'black',
+    filter: theme.palette.mode === 'light' && 'invert(1)',
+    [theme.breakpoints.down('sm')]: {
+      marginTop: '-10px',
+      marginBottom: '10px',
+    },
+  };
 
   return (
     <div className="searchContainer">
@@ -37,7 +48,7 @@ const Search = () => {
             </InputAdornment>
           ),
         }}
-        // sx={styles.input}
+        sx={input}
       />
     </div>
   );

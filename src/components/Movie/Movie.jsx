@@ -1,13 +1,19 @@
 import { Typography, Grid, Grow, Tooltip, Rating } from '@mui/material';
-import MovieIcon from '@mui/icons-material/Movie';
 import { Link } from 'react-router-dom';
 import './style.css';
 import { useTheme } from '@mui/material/styles';
 
 const Movie = ({ movie, i }) => {
   const theme = useTheme();
-  // 3 * 4 = 12  [xl={3} means 4 columns]
+
+  const shadow = theme.palette.mode === 'dark' ? 'hsl(0, 1%, 20%)' : 'hsl(240, 3%, 91%)';
+  // Get the root element
+  const root = document.querySelector(':root');
+  root.style.setProperty('--movie__shadow', shadow);
+
+  // console.log('Movie', shadow);
   return (
+    // 3 * 4 = 12  [xl={3} means 4 columns]
     <Grid item className="movie" xs={12} sm={6} md={4} lg={3} xl={2}>
       <Grow in key={i} timeout={(i + 1) * 200}>
         <Link to={`/movie/${movie.id}`} className="movie__links">

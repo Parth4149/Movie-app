@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useGetGenresQuery } from '../../services/TMDB';
 import { selectGenreOrCategory } from '../../features/currentGenreOrCategory'; // action creators
 
-import styles from './styles';
 import './style.css';
 
 import genreIcons from '../../assets/genres'; // OR  ../../assets/genres/index
@@ -18,7 +17,6 @@ const categories = [
 ];
 
 const blueLogo = 'https://fontmeme.com/permalink/210930/8531c658a743debe1e1aa1a2fc82006e.png';
-const redLogo = 'https://fontmeme.com/permalink/210930/6854ae5c7f76597cf8680e48a2c8a50a.png';
 
 const Sidebar = () => {
   const theme = useTheme();
@@ -45,7 +43,7 @@ const Sidebar = () => {
       <List>
         <ListSubheader>Categories</ListSubheader>
         {categories.map(({ label, value }) => (
-          <Link to="/" key={value} style={styles.sidebar__links}>
+          <Link to="/" key={value} style={{ color: theme.palette.text.primary }}>
             <ListItem onClick={() => dispatch(selectGenreOrCategory(value))}>
               <ListItemIcon>
                 <img
@@ -54,8 +52,7 @@ const Sidebar = () => {
                   height={30}
                 />
               </ListItemIcon>
-              {/* <ListItemText primary={label} /> */}
-              <Typography color="textPrimary">{label}</Typography>
+              <ListItemText primary={label} />
             </ListItem>
           </Link>
         ))}
@@ -69,7 +66,7 @@ const Sidebar = () => {
           </Box>
         ) : (
           data.genres.map(({ name, id }) => (
-            <Link to="/" key={id} style={styles.sidebar__links}>
+            <Link to="/" key={id} style={{ color: theme.palette.text.primary }}>
               <ListItem onClick={() => dispatch(selectGenreOrCategory(id))}>
                 <ListItemIcon>
                   <img
@@ -78,7 +75,7 @@ const Sidebar = () => {
                     height={30}
                   />
                 </ListItemIcon>
-                <Typography color="textPrimary">{name}</Typography>
+                <ListItemText primary={name} />
               </ListItem>
             </Link>
           ))

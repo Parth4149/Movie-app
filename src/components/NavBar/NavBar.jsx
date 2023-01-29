@@ -1,17 +1,20 @@
 import { AppBar, IconButton, Toolbar, Drawer, Button, Avatar, useMediaQuery } from '@mui/material';
 import { Menu, AccountCircle, Brightness4, Brightness7 } from '@mui/icons-material';
+import { useTheme } from '@mui/material/styles';
+
 import { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import styles from './styles';
+import './style.css';
 
 import { Sidebar, Search } from '../index';
 import { fetchToken, createSessionId, moviesApi } from '../../utils';
 import { setUser, userSelector } from '../../features/auth';
 import { ColorModeContext } from '../../utils/ToggleColorMode';
 
-const NavBar = ({ theme }) => {
+const NavBar = () => {
+  const theme = useTheme();
   const isMobile = useMediaQuery('(max-width:600px)');
   const [mobileOpen, setMobileOpen] = useState(false);
   const token = localStorage.getItem('request_token');
@@ -21,7 +24,7 @@ const NavBar = ({ theme }) => {
   const { isAuthenticated, user } = useSelector(userSelector);
 
   const colorMode = useContext(ColorModeContext);
-  // console.log('Navbar', colorMode);
+  // console.log('Navbar', theme);
 
   useEffect(() => {
     const logInUser = async () => {
@@ -42,15 +45,23 @@ const NavBar = ({ theme }) => {
     logInUser();
   }, [token]);
 
+  // style
+  const menuButton = {
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.up('sm')]: {
+      display: 'none',
+    },
+  };
   return (
     <section>
       <AppBar position="fixed">
-        <Toolbar sx={styles.toolbar}>
+        <Toolbar className="toolbar">
           {isMobile && (
             <IconButton
               onClick={() => setMobileOpen((prevMobileOpen) => !prevMobileOpen)}
               color="inherit"
               edge="start"
+              sx={menuButton}
             >
               <Menu />
             </IconButton>
@@ -68,8 +79,8 @@ const NavBar = ({ theme }) => {
               </Button>
             ) : (
               <Button
-                sx={styles.linkButton}
                 color="inherit"
+                className="link__button"
                 component={Link}
                 to={`/profile/${user.id}`}
               >
@@ -82,21 +93,20 @@ const NavBar = ({ theme }) => {
         </Toolbar>
       </AppBar>
       <div>
-        {/* style={styles.drawer} */}
-        <nav style={styles.drawer}>
+        <nav className="drawer">
           {isMobile ? (
             <Drawer
               variant="temporary"
               anchor="right"
               open={mobileOpen}
-              sx={styles.drawerPaper}
+              className="drawer__paper"
               ModalProps={{ keepMounted: true }} // Better open performance on mobile.
               onClose={() => setMobileOpen((prevMobileOpen) => !prevMobileOpen)}
             >
               <Sidebar setMobileOpen={setMobileOpen} />
             </Drawer>
           ) : (
-            <Drawer sx={styles.drawerPaper} variant="permanent" open>
+            <Drawer className="drawer__paper" variant="permanent" open>
               <Sidebar setMobileOpen={setMobileOpen} />
             </Drawer>
           )}

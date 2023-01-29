@@ -14,7 +14,7 @@ const Movies = () => {
 
   const lg = useMediaQuery(theme.breakpoints.only('lg'));
   const numberOfMovies = lg ? 16 : 18;
-  console.log('Movies');
+  // console.log('Movies');
   if (isFetching) { // for loading
     return (
       <Box display="flex" justifyContent="center">
