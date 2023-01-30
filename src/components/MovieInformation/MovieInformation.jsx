@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useTheme } from '@mui/material/styles';
-import { Modal, Typography, Button, ButtonGroup, Grid, Box, CircularProgress, useMediaQuery, Rating } from '@mui/material';
-import { Movie as MovieIcon, Theaters, Language, PlusOne, Favorite, FavoriteBorderOutlinedIcon, Remove, ArrowBack, FavoriteBorderOutlined } from '@mui/icons-material';
+import { Modal, Typography, Button, ButtonGroup, Grid, Box, CircularProgress, Rating } from '@mui/material';
+import { Movie as MovieIcon, Theaters, Language, PlusOne, Favorite, Remove, ArrowBack, FavoriteBorderOutlined } from '@mui/icons-material';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';

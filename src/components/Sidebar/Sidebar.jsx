@@ -1,4 +1,5 @@
-import { Divider, List, ListItem, Typography, ListItemText, ListSubheader, ListItemIcon, Box, CircularProgress } from '@mui/material';
+import { useEffect } from 'react';
+import { Divider, List, ListItemButton, ListItemText, ListSubheader, ListItemIcon, Box, CircularProgress } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,13 +19,17 @@ const categories = [
 
 const blueLogo = 'https://fontmeme.com/permalink/210930/8531c658a743debe1e1aa1a2fc82006e.png';
 
-const Sidebar = () => {
+const Sidebar = ({ setMobileOpen }) => {
   const theme = useTheme();
-
+  const { genreIdOrCategoryName } = useSelector((state) => state.currentGenreOrCategory);
   const { data, isFetching } = useGetGenresQuery();
-
   const dispatch = useDispatch();
+  console.log('sidebar', genreIdOrCategoryName);
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [genreIdOrCategoryName]);
 
+  // style
   const genreImage = {
     filter: theme.palette.mode === 'dark' && 'invert(1)',
   };
@@ -44,7 +49,7 @@ const Sidebar = () => {
         <ListSubheader>Categories</ListSubheader>
         {categories.map(({ label, value }) => (
           <Link to="/" key={value} style={{ color: theme.palette.text.primary }}>
-            <ListItem onClick={() => dispatch(selectGenreOrCategory(value))}>
+            <ListItemButton onClick={() => dispatch(selectGenreOrCategory(value))}>
               <ListItemIcon>
                 <img
                   style={genreImage}
@@ -53,7 +58,7 @@ const Sidebar = () => {
                 />
               </ListItemIcon>
               <ListItemText primary={label} />
-            </ListItem>
+            </ListItemButton>
           </Link>
         ))}
       </List>
@@ -67,7 +72,7 @@ const Sidebar = () => {
         ) : (
           data.genres.map(({ name, id }) => (
             <Link to="/" key={id} style={{ color: theme.palette.text.primary }}>
-              <ListItem onClick={() => dispatch(selectGenreOrCategory(id))}>
+              <ListItemButton onClick={() => dispatch(selectGenreOrCategory(id))}>
                 <ListItemIcon>
                   <img
                     style={genreImage}
@@ -76,7 +81,7 @@ const Sidebar = () => {
                   />
                 </ListItemIcon>
                 <ListItemText primary={name} />
-              </ListItem>
+              </ListItemButton>
             </Link>
           ))
         )}

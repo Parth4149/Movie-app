@@ -1,14 +1,13 @@
 import { Typography, Box } from '@mui/material';
-import styles from './styles';
 
 import { Movie } from '..';
 
-const RatedCards = ({ title, data}) => {
+const RatedCards = ({ title, data }) => {
   console.log('Rated cards');
   return (
     <Box>
       <Typography variant="h5" gutterBottom>Favorites</Typography>
-      <Box display="flex" flexWrap="wrap" sx={styles.container}>
+      <Box display="flex" flexWrap="wrap" sx={{ m: '20px 0' }}>
         {data?.results.map((movie, i) => (
           <Movie key={movie.id} movie={movie} i={i} />
         ))}
