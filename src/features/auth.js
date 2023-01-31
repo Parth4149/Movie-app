@@ -14,7 +14,7 @@ const authSlice = createSlice({
       state.user = action.payload;
       state.isAuthenticated = true;
       state.sessionId = localStorage.getItem('session_id');
-      // console.log('auth', action.payload.id);
+
       localStorage.setItem('accountId', action.payload.id);
     },
   },
@@ -23,5 +23,3 @@ const authSlice = createSlice({
 export const { setUser } = authSlice.actions;
 
 export default authSlice.reducer;
-
-export const userSelector = (state) => state.user;

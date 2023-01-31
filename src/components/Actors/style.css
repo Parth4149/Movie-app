@@ -1,7 +1,6 @@
 .image {
   max-width: 90%;
-  border-radius: 20px;
+  border-radius: 10px;
   object-fit: cover;
-  /* box-shadow: 0.5rem 1rem 2rem hsl(240, 3%, 45%); */
-  box-shadow: -5px -5px 10px hsl(0, 0%, 100%), 5px 5px 10px hsl(240, 3%, 51%);
+  box-shadow: 4px 6px 14px hsla(0, 2%, 22%, 0.707);
 }

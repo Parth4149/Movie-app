@@ -1,13 +1,11 @@
 .poster {
-  border-radius: 20px;
-  box-shadow: 4px 6px 16px hsl(0, 1%, 15%);
+  box-shadow: 5px 10px 16px hsl(0, 1%, 15%);
   width: 80%;
 }
 @media screen and (max-width: 900px) {
   .poster {
     margin: 0 auto !important;
     width: 50%;
-    /* max-height: 350px; */
     height: auto;
     display: flex;
   }
@@ -17,7 +15,6 @@
     width: 100%;
     margin-bottom: 30px;
     height: 350px;
-    /* object-fit: scale-down; */
   }
 }
 
@@ -34,7 +31,7 @@
 }
 .video {
    width: 50%;
-   height: 50%;
+   height: 60%;
 }
 .container__space__around, .genres__container {
   display: flex;
@@ -43,6 +40,13 @@
 }
 .genres__container {
   flex-wrap: wrap;
+}
+.cast__image {
+  width: 100%;
+  max-width: 7rem;
+  height: 8rem;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
 @media screen and (max-width: 600px) {
@@ -54,7 +58,7 @@
   }
   .video {
     width: 90%;
-    height: 40%;
+    height: 36%;
   }
   .container__space__around {
     flex-direction: column;

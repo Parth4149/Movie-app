@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { Divider, List, ListItemButton, ListItemText, ListSubheader, ListItemIcon, Box, CircularProgress } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { useTheme } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { useGetGenresQuery } from '../../services/TMDB';
@@ -19,8 +18,7 @@ const categories = [
 
 const blueLogo = 'https://fontmeme.com/permalink/210930/8531c658a743debe1e1aa1a2fc82006e.png';
 
-const Sidebar = ({ setMobileOpen }) => {
-  const theme = useTheme();
+const Sidebar = ({ theme, setMobileOpen }) => {
   const { genreIdOrCategoryName } = useSelector((state) => state.currentGenreOrCategory);
   const { data, isFetching } = useGetGenresQuery();
   const dispatch = useDispatch();

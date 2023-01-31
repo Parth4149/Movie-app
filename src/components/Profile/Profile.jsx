@@ -3,12 +3,11 @@ import { Box, Typography, Button } from '@mui/material';
 import { ExitToApp } from '@mui/icons-material';
 
 import { useSelector } from 'react-redux';
-import { userSelector } from '../../features/auth'; // (state) => state.user;
 import { useGetListQuery } from '../../services/TMDB';
 import { RatedCards } from '..';
 
 const Profile = () => {
-  const { user } = useSelector(userSelector);
+  const { user } = useSelector((state) => state.user);
 
   const logout = () => {
     localStorage.clear();

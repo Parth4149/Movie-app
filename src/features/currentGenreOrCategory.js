@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-// https://redux-toolkit.js.org/tutorials/quick-start#full-counter-app-example
 
 export const genreOrCategory = createSlice({
   name: 'genreOrCategory',
@@ -10,7 +9,6 @@ export const genreOrCategory = createSlice({
   },
   reducers: {
     selectGenreOrCategory: (state, action) => {
-      // console.log(action.payload);
       state.genreIdOrCategoryName = action.payload;
       state.searchQuery = '';
     },

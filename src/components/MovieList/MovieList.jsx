@@ -5,7 +5,6 @@ import './style.css';
 
 const MovieList = ({ movies, numberOfMovies, excludeFirst }) => {
   const startFrom = excludeFirst ? 1 : 0;
-  // console.log('MovieList', startFrom);
   return (
     <Grid container className="movies__container">
       {movies.results.slice(startFrom, numberOfMovies).map((movie, i) => (

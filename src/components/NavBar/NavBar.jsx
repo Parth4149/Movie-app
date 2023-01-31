@@ -1,6 +1,5 @@
 import { AppBar, IconButton, Toolbar, Drawer, Button, Avatar, useMediaQuery } from '@mui/material';
 import { Menu, AccountCircle, Brightness4, Brightness7 } from '@mui/icons-material';
-import { useTheme } from '@mui/material/styles';
 
 import { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
@@ -10,11 +9,10 @@ import './style.css';
 
 import { Sidebar, Search } from '../index';
 import { fetchToken, createSessionId, moviesApi } from '../../utils';
-import { setUser, userSelector } from '../../features/auth';
+import { setUser } from '../../features/auth';
 import { ColorModeContext } from '../../utils/ToggleColorMode';
 
-const NavBar = () => {
-  const theme = useTheme();
+const NavBar = ({ theme }) => {
   const isMobile = useMediaQuery('(max-width:600px)');
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -22,7 +20,7 @@ const NavBar = () => {
   const sessionIdFromLocalStorage = localStorage.getItem('session_id');
 
   const dispatch = useDispatch();
-  const { isAuthenticated, user } = useSelector(userSelector);
+  const { isAuthenticated, user } = useSelector((state) => state.user);
 
   const colorMode = useContext(ColorModeContext);
   console.log('Navbar', `https://www.themoviedb.org/t/p/w64_and_h64_face${user?.avatar?.tmdb?.avatar?.avatar_path}`);
@@ -108,11 +106,11 @@ const NavBar = () => {
               ModalProps={{ keepMounted: true }} // Better open performance on mobile.
               onClose={() => setMobileOpen((prevMobileOpen) => !prevMobileOpen)}
             >
-              <Sidebar setMobileOpen={setMobileOpen} />
+              <Sidebar theme={theme} setMobileOpen={setMobileOpen} />
             </Drawer>
           ) : (
             <Drawer className="drawer__paper" variant="permanent" open>
-              <Sidebar setMobileOpen={setMobileOpen} />
+              <Sidebar theme={theme} setMobileOpen={setMobileOpen} />
             </Drawer>
           )}
         </nav>

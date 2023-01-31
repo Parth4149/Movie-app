@@ -1,13 +1,11 @@
 import { useState } from 'react';
 import { Box, CircularProgress, useMediaQuery, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
-import { useTheme } from '@mui/material/styles';
 import { useGetMoviesQuery } from '../../services/TMDB';
 
 import { FeaturedMovie, MovieList, Pagination } from '..';
 
-const Movies = () => {
-  const theme = useTheme();
+const Movies = ({ theme }) => {
   const [page, setPage] = useState(1);
   const { genreIdOrCategoryName, searchQuery } = useSelector((state) => state.currentGenreOrCategory); // read data from the store
   const { data, error, isFetching } = useGetMoviesQuery({ genreIdOrCategoryName, page, searchQuery });
@@ -27,7 +25,7 @@ const Movies = () => {
     return (
       <Box display="flex" justifyContent="center" alignItems="center" mt="20px">
         <Typography variant="h4">
-          No movies that match that name.
+          No movies that match this name.
           <br />
           Please search for something else.
         </Typography>

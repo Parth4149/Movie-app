@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useTheme } from '@mui/material/styles';
 import { Modal, Typography, Button, ButtonGroup, Grid, Box, CircularProgress, Rating } from '@mui/material';
 import { Movie as MovieIcon, Theaters, Language, PlusOne, Favorite, Remove, ArrowBack, FavoriteBorderOutlined } from '@mui/icons-material';
 import { Link, useParams } from 'react-router-dom';
@@ -11,13 +10,11 @@ import genreIcons from '../../assets/genres';
 import { selectGenreOrCategory } from '../../features/currentGenreOrCategory'; // action creators
 
 import './style.css';
-import { MovieList } from '../index';
+import { MovieList } from '..';
 
-const MovieInformation = () => {
-  const theme = useTheme();
+const MovieInformation = ({ theme }) => {
   const { id } = useParams();
   const { user } = useSelector((state) => state.user);
-  // rename (2)
   const { data, isFetching, error } = useGetMovieQuery(id);
   const { data: recommendations, isFetching: isRecommendationsFetching } = useGetRecommendationsQuery({ movie_id: id, list: '/recommendations' });
   const { data: favoriteMovies } = useGetListQuery({
@@ -69,7 +66,7 @@ const MovieInformation = () => {
   };
 
   // if (user?.id) { console.log('Movie Information', user); }
-  //* styles
+  // ? style
   const genre__images = {
     filter: theme.palette.mode === 'dark' && 'invert(1)',
     marginRight: '10px',
@@ -139,7 +136,7 @@ const MovieInformation = () => {
           {data && data.credits?.cast?.map((character, i) => (
             character.profile_path && (
             <Grid item xs={4} md={2} component={Link} to={`/actors/${character.id}`} sx={{ textDecoration: 'none' }} key={i}>
-              <img className="castImage" src={`https://image.tmdb.org/t/p/w500/${character?.profile_path}`} alt={character.name} />
+              <img className="cast__image" src={`https://image.tmdb.org/t/p/w500/${character?.profile_path}`} alt={character.name} />
               <Typography color="textPrimary">{character?.name}</Typography>
               <Typography color="textSecondary">
                 {character.character}
@@ -203,7 +200,6 @@ const MovieInformation = () => {
           <iframe
             autoPlay
             className="video"
-            // frameBorder="0"
             title="Trailer"
             src={`https://www.youtube.com/embed/${data.videos.results[0].key}`}
             allow="autoplay"

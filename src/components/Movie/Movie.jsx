@@ -6,7 +6,7 @@ import { useTheme } from '@mui/material/styles';
 const Movie = ({ movie, i }) => {
   const theme = useTheme();
 
-  const shadow = theme.palette.mode === 'dark' ? 'hsl(0, 1%, 20%)' : 'hsl(240, 3%, 91%)';
+  const shadow = theme.palette.mode === 'dark' ? 'hsl(0, 1%, 16%)' : 'hsl(240, 3%, 91%)';
   // Get the root element
   const root = document.querySelector(':root');
   root.style.setProperty('--movie__shadow', shadow);

@@ -1,10 +1,8 @@
 import { Typography, Button } from '@mui/material';
 import './style.css';
-// import { useTheme } from '@emotion/react';
 import { useTheme } from '@mui/material/styles';
 
 const Pagination = ({ currentPage, setPage, totalPages }) => {
-  // console.log('Pagination');
   const theme = useTheme();
 
   const handlePrev = () => {
