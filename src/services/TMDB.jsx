@@ -1,8 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-// import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query';
 
 const tmdbApiKey = process.env.REACT_APP_TMDB_KEY;
-// const tmdbApiKey = '452c75a83b35c60555caa1acf0c698ce';
 
 export const tmdbApi = createApi({
   reducerPath: 'tmdbApi',
@@ -40,8 +38,6 @@ export const tmdbApi = createApi({
     }),
 
     // Get user specific list
-    // https://api.themoviedb.org/3/account/%7Baccount_id%7D/favorite/movies?api_key=452c75a83b35c60555caa1acf0c698ce
-    // &session_id=1f0c729db5cd8e67622a241da4076b7148f10542&language=en-US&sort_by=created_at.asc&page=1
     getList: builder.query({
       query: ({ listName, accountId, sessionId, page }) => `/account/${accountId}/${listName}?api_key=${tmdbApiKey}&session_id=${sessionId}&page=${page}`,
     }),
