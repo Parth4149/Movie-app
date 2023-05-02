@@ -1,6 +1,6 @@
-import { Typography, Button } from '@mui/material';
-import './style.css';
-import { useTheme } from '@mui/material/styles';
+import { Typography, Button } from "@mui/material";
+import "./style.css";
+import { useTheme } from "@mui/material/styles";
 
 const Pagination = ({ currentPage, setPage, totalPages }) => {
   const theme = useTheme();
@@ -18,13 +18,29 @@ const Pagination = ({ currentPage, setPage, totalPages }) => {
 
   return (
     <div className="container">
-      <Button onClick={handlePrev} className="button" variant="contained" color="primary" type="button">
+      <Button
+        onClick={handlePrev}
+        className="button"
+        variant="contained"
+        color="primary"
+        type="button"
+      >
         Prev
       </Button>
-      <Typography variant="h4" className="page__number" style={{ color: theme.palette.text.primary }}>
+      <Typography
+        variant="h4"
+        className="page__number"
+        style={{ color: theme.palette.text.primary }}
+      >
         {currentPage}
       </Typography>
-      <Button onClick={handleNext} className="button" variant="contained" color="primary" type="button">
+      <Button
+        onClick={handleNext}
+        className="button"
+        variant="contained"
+        color="primary"
+        type="button"
+      >
         Next
       </Button>
     </div>

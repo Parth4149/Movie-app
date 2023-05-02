@@ -1,7 +1,7 @@
-import { Grid } from '@mui/material';
-import { Movie } from '../index';
+import { Grid } from "@mui/material";
+import { Movie } from "../index";
 
-import './style.css';
+import "./style.css";
 
 const MovieList = ({ movies, numberOfMovies, excludeFirst }) => {
   const startFrom = excludeFirst ? 1 : 0;

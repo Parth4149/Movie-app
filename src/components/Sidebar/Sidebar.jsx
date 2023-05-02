@@ -1,35 +1,47 @@
-import { useEffect } from 'react';
-import { Divider, List, ListItemButton, ListItemText, ListSubheader, ListItemIcon, Box, CircularProgress } from '@mui/material';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from "react";
+import {
+  Divider,
+  List,
+  ListItemButton,
+  ListItemText,
+  ListSubheader,
+  ListItemIcon,
+  Box,
+  CircularProgress,
+} from "@mui/material";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
-import { useGetGenresQuery } from '../../services/TMDB';
-import { selectGenreOrCategory } from '../../features/currentGenreOrCategory'; // action creators
+import { useGetGenresQuery } from "../../services/TMDB";
+import { selectGenreOrCategory } from "../../features/currentGenreOrCategory"; // action creators
 
-import './style.css';
+import "./style.css";
 
-import genreIcons from '../../assets/genres'; // OR  ../../assets/genres/index
+import genreIcons from "../../assets/genres"; // OR  ../../assets/genres/index
 
 const categories = [
-  { label: 'Popular', value: 'popular' },
-  { label: 'Top Rated', value: 'top_rated' },
-  { label: 'Upcoming', value: 'upcoming' },
+  { label: "Popular", value: "popular" },
+  { label: "Top Rated", value: "top_rated" },
+  { label: "Upcoming", value: "upcoming" },
 ];
 
-const blueLogo = 'https://fontmeme.com/permalink/210930/8531c658a743debe1e1aa1a2fc82006e.png';
+const blueLogo =
+  "https://fontmeme.com/permalink/210930/8531c658a743debe1e1aa1a2fc82006e.png";
 
 const Sidebar = ({ theme, setMobileOpen }) => {
-  const { genreIdOrCategoryName } = useSelector((state) => state.currentGenreOrCategory);
+  const { genreIdOrCategoryName } = useSelector(
+    (state) => state.currentGenreOrCategory
+  );
   const { data, isFetching } = useGetGenresQuery();
   const dispatch = useDispatch();
-  // console.log('sidebar', genreIdOrCategoryName);
+
   useEffect(() => {
     setMobileOpen(false);
   }, [genreIdOrCategoryName]);
 
   // style
   const genreImage = {
-    filter: theme.palette.mode === 'dark' && 'invert(1)',
+    filter: theme.palette.mode === "dark" && "invert(1)",
   };
 
   return (
@@ -46,13 +58,20 @@ const Sidebar = ({ theme, setMobileOpen }) => {
       <List>
         <ListSubheader>Categories</ListSubheader>
         {categories.map(({ label, value }) => (
-          <Link to="/" key={value} style={{ color: theme.palette.text.primary }}>
-            <ListItemButton onClick={() => dispatch(selectGenreOrCategory(value))}>
+          <Link
+            to="/"
+            key={value}
+            style={{ color: theme.palette.text.primary }}
+          >
+            <ListItemButton
+              onClick={() => dispatch(selectGenreOrCategory(value))}
+            >
               <ListItemIcon>
                 <img
                   style={genreImage}
                   src={genreIcons[label.toLowerCase()]}
                   height={30}
+                  alt={label}
                 />
               </ListItemIcon>
               <ListItemText primary={label} />
@@ -68,14 +87,17 @@ const Sidebar = ({ theme, setMobileOpen }) => {
             <CircularProgress />
           </Box>
         ) : (
-          data.genres.map(({ name, id }) => (
+          data?.genres.map(({ name, id }) => (
             <Link to="/" key={id} style={{ color: theme.palette.text.primary }}>
-              <ListItemButton onClick={() => dispatch(selectGenreOrCategory(id))}>
+              <ListItemButton
+                onClick={() => dispatch(selectGenreOrCategory(id))}
+              >
                 <ListItemIcon>
                   <img
                     style={genreImage}
                     src={genreIcons[name.toLowerCase()]}
                     height={30}
+                    alt={name}
                   />
                 </ListItemIcon>
                 <ListItemText primary={name} />
