@@ -11,8 +11,7 @@ const App = () => {
     <div className="root">
       {/* <CssBaseline /> */}
       <NavBar theme={theme} />
-
-      <main className="content">
+      <main className="content" style={{ background: theme.palette.background.default}}>
         <Routes>
           <Route path="/" element={<Movies theme={theme} />} />
           <Route path="/approved" element={<Movies theme={theme} />} />
