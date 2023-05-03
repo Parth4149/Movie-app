@@ -1,4 +1,4 @@
-// import { CssBaseline } from "@mui/material";
+import { CssBaseline } from "@mui/material";
 import { Routes, Route } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 
@@ -9,9 +9,9 @@ const App = () => {
   const theme = useTheme();
   return (
     <div className="root">
-      {/* <CssBaseline /> */}
+      <CssBaseline />
       <NavBar theme={theme} />
-      <main className="content" style={{ background: theme.palette.background.default}}>
+      <main className="content">
         <Routes>
           <Route path="/" element={<Movies theme={theme} />} />
           <Route path="/approved" element={<Movies theme={theme} />} />
