@@ -14,7 +14,9 @@
 .link__button:hover {
   text-decoration: none;
 }
-
+.sidebar {
+  width: 13rem;
+}
 @media screen and (max-width: 600px) {
   .toolbar {
     margin-left: 0;

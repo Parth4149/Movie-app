@@ -5,11 +5,16 @@
   width: 100%;
 }
 .logo_container {
-  max-width: 240px;
+  width: 100%;
   text-align: center;
-  padding: .5rem 0;
+  padding: 1rem 0;
+}
+.logo_container figure {
+  height: 4rem;
+  display: grid;
+  place-items: center;
 }
 .logo_style {
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
 }

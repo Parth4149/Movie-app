@@ -44,9 +44,11 @@ const Sidebar = ({ theme, setMobileOpen }) => {
   const color = theme.palette.primary.dark;
 
   return (
-    <>
+    <section className="sidebar">
       <Link to="/" className="logo_container">
-        <Logo color={color} />
+        <figure>
+          <Logo color={color} />
+        </figure>
       </Link>
       <Divider />
       <List>
@@ -82,7 +84,7 @@ const Sidebar = ({ theme, setMobileOpen }) => {
           </Box>
         ) : (
           data?.genres.map(({ name, id }) => (
-            <Link to="/" key={id} style={{ color: theme.palette.text.primary }}>
+            <Link to="/" key={id} style={{ all: "unset" }}>
               <ListItemButton
                 onClick={() => dispatch(selectGenreOrCategory(id))}
               >
@@ -100,7 +102,7 @@ const Sidebar = ({ theme, setMobileOpen }) => {
           ))
         )}
       </List>
-    </>
+    </section>
   );
 };
 
