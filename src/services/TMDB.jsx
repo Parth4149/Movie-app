@@ -30,7 +30,7 @@ export const tmdbApi = createApi({
           genreIdOrCategoryName &&
           typeof genreIdOrCategoryName === "number"
         ) {
-          return `/discover/movie?with_genres=${genreIdOrCategoryName}&page=${page}&api_key=${tmdbApiKey}&page=${page}`;
+          return `/discover/movie?with_genres=${genreIdOrCategoryName}&page=${page}&api_key=${tmdbApiKey}`;
         }
         // Get popular movies
         return `/movie/popular?&page=${page}&api_key=${tmdbApiKey}`;
@@ -65,6 +65,8 @@ export const tmdbApi = createApi({
   }),
 });
 
+// Export hooks to use in functional components, which are
+// auto-generated based on the defined endpoints
 export const {
   useGetGenresQuery,
   useGetMoviesQuery,
